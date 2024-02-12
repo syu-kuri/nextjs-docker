@@ -5,12 +5,14 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: my_webapp
+    container_name: app
     ports:
       - "${PORT}:3000"
     volumes:
       - ./app:/app
       - node_modules:/app/node_modules
+    environment:
+      - WATCHPACK_POLLING=true
     stdin_open: true
     tty: true
     command: sh -c "npm install && npm run dev"
